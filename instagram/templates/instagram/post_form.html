@@ -1,0 +1,27 @@
+{% extends 'instagram/layout.html'%} {%block content%} {%load bootstrap4%}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      {% comment %} {% include "_form.html" with form_title="회원가입"
+      submit_label="회원가입" %} {% endcomment %}
+      <div class="card">
+        <div class="card-header">{{form_title|default:'새 포스팅 쓰기'}}</div>
+
+        <div class="card-body">
+          {%if form%}
+          <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %} {% bootstrap_form form %} {% buttons %}
+            <button type="submit" class="btn btn-primary mt-3">
+              {{submit_label|default:"새 포스팅 쓰기"}}
+            </button>
+            {%endbuttons%}
+          </form>
+          {% else %}
+          <div class="alert alert-danger">form 객체를 지정해주세요</div>
+          {%endif%}
+        </div>
+      </div>
+    </div>
+  </div>
+  {%endblock%}
+</div>
