@@ -3,7 +3,17 @@ from django.contrib.auth.decorators import login_required
 from .forms import PostForm
 from django.contrib import messages
 from .models import Post, Tag
+from django.contrib.auth import get_user_model
 
+@login_required
+def index(request):
+    suggested_user_list = get_user_model().objects.all()\
+        .exclude(pk=request.user.pk)\
+        .exclude(pk__in=request.user.following_set.all())[:3]
+
+    return render(request, 'instagram/index.html',{
+        "suggested_user_list":suggested_user_list,
+    })
 
 @login_required
 def post_new(request):
@@ -27,4 +37,15 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'instagram/post_detail.html', {
         'post': post,
+    })
+
+
+def user_page(request, username):
+    page_user = get_object_or_404(get_user_model(), username=username, is_active=True)
+    post_list = Post.objects.filter(author=page_user)
+    post_list_count = post_list.count() # 실제 데이터베이스에 count 쿼리를 던짐
+    return render(request, 'instagram/user_page.html', {
+        "page_user":page_user,
+        "post_list":post_list,
+        'post_list_count': post_list_count,
     })
