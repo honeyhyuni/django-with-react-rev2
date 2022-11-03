@@ -6,14 +6,10 @@
     <title>Instagram with Ask Company</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link
-      rel="stylesheet"
-      href="{% static 'bootstrap-4.6.2-dist/css/bootstrap.css' %}"
-    />
-    <script src="{% static 'jquery-3.6.1.min.js' %}"></script>
-    <script
-      scr="{% static 'bootstrap-4.6.2-dist/js/bootstrap.js' %}"
-    ></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-4.6.2-dist/css/bootstrap.min.css' %}" />
+    <script src="{% static 'jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'jquery.form-3.51.0.min.js' %}"></script>
+    <script scr="{% static 'bootstrap-4.6.2-dist/js/bootstrap.min.js' %}"></script>
   </head>
 
   <body>
@@ -63,7 +59,7 @@
         <footer class="pt-4 my-md-5 pt-md-5">
             <div class="row">
             <div class="col-12 col-md">
-                <img class="mb-2" src="/docs/4.6.2/assets/brand/bootstrap-logo.svg" alt="" width="24" height="19">
+                {% comment %} <img class="mb-2" src="/docs/4.6.2/assets/brand/bootstrap-logo.svg" alt="" width="24" height="19"> {% endcomment %}
                 <small class="d-block mb-3 text-muted">© 2017–2022</small>
             </div>
             <div class="col-6 col-md">
